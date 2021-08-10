@@ -143,7 +143,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`) VALUES
 ('asmith', NULL, 'smith@gmail.com', '1984-04-19', 'Abc123', 'admin'),
-('cbaldry', 'craig', 'cbaldry@our.ecu.edu.au', '1986-06-17', '12345', 'member'),
+('cbaldry', 'craig', 'cbaldry@our.ecu.edu.au', '1986-06-17', '12345', 'admin'),
 ('jbloggs', 'Joe Bloggs', 'jbloggs@gmail.com', '1984-07-02', 'swordfish99', 'member');
 
 --

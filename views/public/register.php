@@ -15,7 +15,6 @@
 
         $errorMessages = [];
 
-        // [username] => 
         if (empty($_POST['username'])) {
             $errorMessages[] = 'Username is empty.';
         }
@@ -24,22 +23,18 @@
             $errorMessages[] = 'Username is too long. A maximum of 20 characters.';
         }
 
-        // [pass] => 
         if (strlen($_POST['pass']) < 5) {
             $errorMessages[] = 'Password must be at least 6 characters long.';
         }
 
-        // [confirm_pass] => 
         if ($_POST['pass'] != $_POST['confirm_pass']) {
             $errorMessages[] = 'Password does not match confirmation.';
         }
 
-        // [real_name] =>
         if (strlen($_POST['real_name']) > 100) {
             $errorMessages[] = 'Real name is too long. A maximum of 100 characters.';
         }
 
-        // [email] => 
         $sanitized_email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
         if (empty($_POST['email'] && $sanitized_email == $_POST['email'])) {
             $errorMessages[] = 'Email is not a valid email address';
@@ -48,8 +43,7 @@
         if (strlen($_POST['email']) > 40) {
             $errorMessages[] = 'Email is too long. A maximum of 40 characters allowed';
         }
-
-        // [dob] =>
+        
         if (empty($_POST['dob'])) {
             $errorMessages[] = 'Date of birth is empty';
         } else {
@@ -71,7 +65,7 @@
         } else {
             //Process Form
             require '../../src/connect_db.php';
-
+            //TODO: optimize this
             $stmt = $db->prepare("SELECT username FROM user WHERE username = ?");
             $success = $stmt->execute([$_POST['username']]);
             $results = $stmt->fetch();

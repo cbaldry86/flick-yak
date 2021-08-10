@@ -88,7 +88,7 @@ if (isset($id)) {
         echo '<table><tr><td><p> <b>' . date("d/m/Y g:ia", strtotime($row['post_date']));
 
         if (isset($_SESSION['username'])) {
-            echo '<p><a href="../member/user_profile.php?id=' . $row['username'] . '">'
+            echo ' <a href="../member/user_profile.php?id=' . $row['username'] . '">('
                 . $row['username'] . ')</a>';
         } else {
             echo ' ' . $row['username'] . ' </b> </p>';

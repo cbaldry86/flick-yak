@@ -1,5 +1,5 @@
 <?php
-//Hard coded url maybe a better way to do this?
+//TODO: Change this
 $views_dir = 'http://localhost:2431/flick-yak/views/';
 $root_dir = 'http://localhost:2431/flick-yak/';
 

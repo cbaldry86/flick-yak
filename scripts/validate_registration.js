@@ -20,7 +20,10 @@ function validateMemberRegistration() {
     form.confirm_pass.style.borderColor = "Red";
   }
 
-  if (!form.email.value.includes("@")) {
+  if (form.email.value.trim().length == 0) {
+    errorMessages.push("Invalid email, is required");
+    form.email.style.borderColor = "Red";
+  } else if (!form.email.value.includes("@")) {
     errorMessages.push("Invalid email");
     form.email.style.borderColor = "Red";
   }
@@ -36,7 +39,7 @@ function validateMemberRegistration() {
     let diff = today.getFullYear() - dob.getFullYear();
 
     if (diff < 14) {
-      errorMessages.push("Invalid date");
+      errorMessages.push("Invalid date, too young");
       form.dob.style.borderColor = "Red";
     }
   }

@@ -56,51 +56,39 @@ if (isset($id)) {
     exit;
 }
 
-?>
-<!DOCTYPE html>
-<html lang="en">
+$title = 'Movie Details';
+$script = '../../scripts/main.js';
+require_once '../common/head.php';
+require_once '../common/nav.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+echo '<div>';
+echo '<h1>' . $movie['movie_name'] . ' (' . $movie['release_year'] . ')</h1>';
+echo '<table>';
+echo '<tr><th>Director:</th><td>' . $movie['director'] . '</td></tr>';
+echo '<tr><th>Writers:</th><td>' . $movie['writers'] . '</td></tr>';
+echo '<tr><th>Duration:</th><td>' . $movie['duration'] . ' minutes</td></tr>';
+echo '<tr><th>Plot Summary:</th><td>' . $movie['summary'] . '</td></tr></table>';
+echo '<h2>Member Rating</h2><p>Average Rating: <b>' . number_format($rating['average_rating'], 1, '.', ',') . '</b></p>';
 
-<body>
-    <?php
-    require_once '../common/nav.php';
+if (isset($_SESSION['username'])) {
+    require_once '../forms/rating_form.php';
+}
 
-    echo '<div>';
-    echo '<h1>' . $movie['movie_name'] . ' (' . $movie['release_year'] . ')</h1>';
-    echo '<table>';
-    echo '<tr><th>Director:</th><td>' . $movie['director'] . '</td></tr>';
-    echo '<tr><th>Writers:</th><td>' . $movie['writers'] . '</td></tr>';
-    echo '<tr><th>Duration:</th><td>' . $movie['duration'] . ' minutes</td></tr>';
-    echo '<tr><th>Plot Summary:</th><td>' . $movie['summary'] . '</td></tr></table>';
-    echo '<h2>Member Rating</h2><p>Average Rating: <b>' . number_format($rating['average_rating'], 1, '.', ',') . '</b></p>';
+foreach ($discussion as $row) {
+    echo '<table><tr><td><p> <b>' . date("d/m/Y g:ia", strtotime($row['post_date']));
 
     if (isset($_SESSION['username'])) {
-        require_once '../forms/rating_form.php';
+        echo ' <a href="../member/user_profile.php?id=' . $row['username'] . '">('
+            . $row['username'] . ')</a>';
+    } else {
+        echo ' ' . $row['username'] . ' </b> </p>';
     }
 
-    foreach ($discussion as $row) {
-        echo '<table><tr><td><p> <b>' . date("d/m/Y g:ia", strtotime($row['post_date']));
+    echo '<p>' . $row['content'] . '</p></td></tr></table></div>';
+}
 
-        if (isset($_SESSION['username'])) {
-            echo ' <a href="../member/user_profile.php?id=' . $row['username'] . '">('
-                . $row['username'] . ')</a>';
-        } else {
-            echo ' ' . $row['username'] . ' </b> </p>';
-        }
+if (isset($_SESSION['username'])) {
+    require_once '../forms/discussion_form.php';
+}
 
-        echo '<p>' . $row['content'] . '</p></td></tr></table></div>';
-    }
-
-    if (isset($_SESSION['username'])) {
-        require_once '../forms/discussion_form.php';
-    }
-    ?>
-</body>
-
-</html>
+echo '</body></html>';

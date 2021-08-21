@@ -22,30 +22,18 @@ if (!$user) { // If no data (no thread with that ID in the database)
     echo 'Invalid User ID.';
     exit;
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
+$title = 'Profile';
+$script = '../../scripts/main.js';
+require_once '../common/head.php';
+require_once '../common/nav.php';
+echo '<h2>Details of "' . $user['username'] . '"</h2>';
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
+echo '<table>';
+echo '<tr><th>Real Name:</th><td>' . $user['real_name'] . '</td></tr>';
+echo '<tr><th>Email Address:</th><td>' . $user['email'] . '</td></tr>';
+echo '<tr><th>Year of Birth:</th><td>' . $user['dob'] . '</td></tr>'; //TODO: Show Year
+echo '<tr><th>Access Level:</th><td>' . $user['real_name'] . '</td></tr>';
+echo '</table>';
 
-<body>
-    <?php
-    require_once '../common/nav.php';
-    echo '<h2>Details of "'.$user['username'].'"</h2>';
-    
-    echo '<table>';
-        echo '<tr><th>Real Name:</th><td>'.$user['real_name'].'</td></tr>';
-        echo '<tr><th>Email Address:</th><td>'.$user['email'].'</td></tr>';
-        echo '<tr><th>Year of Birth:</th><td>'.$user['dob'].'</td></tr>'; //TODO: Show Year
-        echo '<tr><th>Access Level:</th><td>'.$user['real_name'].'</td></tr>';
-        echo '</table>';
-        ?>
-</body>
-
-</html>
+echo '</body></html>';

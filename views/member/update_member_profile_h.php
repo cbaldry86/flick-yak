@@ -1,17 +1,10 @@
 <?php
 session_start();
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Profile</title>
-</head>
-<body>
-<?php
+$title = 'Update Profile';
+$script = '../../scripts/main.js';
+require_once '../common/head.php';
+require_once '../common/nav.php';
 
 if (isset($_POST['submit'])) {
 
@@ -28,9 +21,9 @@ if (isset($_POST['submit'])) {
     }
 
     // [real_name] =>
-    if (strlen($_POST['real_name']) > 100){
+    if (strlen($_POST['real_name']) > 100) {
         $errorMessages[] = 'Real name is too long. A maximum of 100 characters.';
-    } 
+    }
 
     // [email] => 
     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) || empty($_POST['email'])) {
@@ -48,14 +41,11 @@ if (isset($_POST['submit'])) {
         }
 
         echo '<a href="javascript: window.history.back()">Return to form</a>';
-    }else {
+    } else {
         //Process Form 
         echo '<h3>Form Submitted successfully!</h3>';
     }
-
-}else{
+} else {
     echo 'Please submit the <a href="update_member_profile.php">form</a>.';
 }
-?>
-</body>
-</html>
+echo '</body></html>';

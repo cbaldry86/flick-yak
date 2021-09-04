@@ -1,5 +1,5 @@
 <?php
-echo '<form name="login" action="' . $views_dir . '/common/login.php' . '" method="post" onsubmit="return validateLogin()">
+echo '<form name="login" action="' . $views_dir . 'common/login.php' . '" method="post" onsubmit="return validateLogin()">
         <div class="close-overlay-button"onclick="off()">X</div>
         <label>Username:<input type="text" name="username_login" value="testuser"></label>
         <br>

@@ -1,5 +1,4 @@
 <?php
-//TODO: Change this
 $views_dir = '/flick-yak/views/';
 $root_dir = '/flick-yak/';
 
@@ -25,7 +24,7 @@ if (!isset($_SESSION['username'])) {
 } else {
     echo '<div class="welcome-tag">Welcome, ' . $_SESSION['username'] . ' [<a href="' . $logout . '">Log Out</a>]</div>';
 }
-echo '<div class="search-bar"><input type="submit" value="Search"><input type="text" name="search_movies"></div>';
+require_once __DIR__ . '/../forms/search_form.php';
 echo '<a href="' . $all_movies_link . '">View All Movies</a>';
 if (isset($_SESSION['username'])) {
     echo '<a href="' . $update_member_profile . '">Update My Profile</a>';

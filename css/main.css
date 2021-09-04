@@ -131,6 +131,10 @@ body {
   color: #f2f2f2;
 }
 
+.warning-text{
+  color: red;
+}
+
 .close-overlay-button {
   cursor: pointer;
   text-align: right;
@@ -178,11 +182,10 @@ td {
 .content {
   text-align: center;
   margin: 100px;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 .rating-container {
-  width: 100%;
   border: #333 solid;
   padding: 10px;
   margin: 10px;

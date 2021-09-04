@@ -1,3 +1,11 @@
+function failedLoginWarning() {
+  loginForm = document.form.login;
+  warning = document.createElement("span");
+  warning.textContent="*Username or password was wrong please try again.*"
+  warning.setAttribute("class", "warningText");
+  loginForm.appendChild(warning);
+}
+
 function on() {
   document.getElementById("overlay").style.display = "block";
 }
@@ -5,7 +13,6 @@ function on() {
 function off() {
   document.getElementById("overlay").style.display = "none";
 }
-
 
 function resetRedStyledInputs(formElements) {
   for (let i = 0; i < formElements.length; i++) {

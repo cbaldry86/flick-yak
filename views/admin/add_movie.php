@@ -7,9 +7,10 @@ if (!isset($_SESSION['access_level']) || !$_SESSION['access_level'] == 'admin') 
 
 $title = 'All Movies';
 $script = '../../scripts/main.js';
+$css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 
 echo    '<h2>Add New Movie</h2><a href="../../index.php">Back Home</a>';
 require_once '../forms/add_new_movie_form.php';
-echo '</body></html>';
+echo '</div></body></html>';

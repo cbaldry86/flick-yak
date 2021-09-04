@@ -1,4 +1,5 @@
-<form name="register" action="member_register_h.php" method="post" onsubmit="return validateMemberRegistration()">
+<?php
+echo '<form name="register" action="member_register_h.php" method="post" onsubmit="return validateMemberRegistration()">
     <p>* indicates required fields</p>
     <fieldset>
         <legend>Member Credentials</legend>
@@ -14,4 +15,4 @@
         <br>
         <input type="submit" name="submit" value="Submit" />
     </fieldset>
-</form>
+</form>';

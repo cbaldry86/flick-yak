@@ -3,6 +3,7 @@ session_start();
 
 $title = 'Update Profile';
 $script = '../../scripts/main.js';
+$css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 
@@ -48,4 +49,4 @@ if (isset($_POST['submit'])) {
 } else {
     echo 'Please submit the <a href="update_member_profile.php">form</a>.';
 }
-echo '</body></html>';
+echo '</div></body></html>';

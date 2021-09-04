@@ -25,15 +25,16 @@ if (!$user) { // If no data (no thread with that ID in the database)
 
 $title = 'Profile';
 $script = '../../scripts/main.js';
+$css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 echo '<h2>Details of "' . $user['username'] . '"</h2>';
 
-echo '<table>';
+echo '<table><tbody>';
 echo '<tr><th>Real Name:</th><td>' . $user['real_name'] . '</td></tr>';
 echo '<tr><th>Email Address:</th><td>' . $user['email'] . '</td></tr>';
 echo '<tr><th>Year of Birth:</th><td>' . $user['dob'] . '</td></tr>'; //TODO: Show Year
-echo '<tr><th>Access Level:</th><td>' . $user['real_name'] . '</td></tr>';
-echo '</table>';
+echo '<tr><th>Access Level:</th><td>' . $user['access_level'] . '</td></tr>';
+echo '</tbody></table>';
 
-echo '</body></html>';
+echo '</div></body></html>';

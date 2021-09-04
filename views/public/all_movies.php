@@ -5,6 +5,7 @@ $results = $db->query("SELECT * FROM movie ORDER BY movie_name");
 
 $title = 'All Movies';
 $script = '../../scripts/main.js';
+$css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 
@@ -18,4 +19,4 @@ foreach ($results as $row) {
         echo '</p>';
     }
 }
-echo '</body></html>';
+echo '</div></body></html>';

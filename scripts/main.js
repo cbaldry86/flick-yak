@@ -1,9 +1,41 @@
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+
 function resetRedStyledInputs(formElements) {
   for (let i = 0; i < formElements.length; i++) {
     if (formElements[i].style.borderColor == "red") {
       formElements[i].style.borderColor = null;
     }
   }
+}
+
+function validateDiscussion() {
+  let form = document.forms.discussion;
+  let errorMessages = [];
+  let inputs = form.elements;
+  resetRedStyledInputs(inputs);
+
+  if (form.post_message.value.trim().length == 0) {
+    errorMessages.push("Invalid comment, cant be empty");
+    form.post_message.style.borderColor = "Red";
+  }
+
+  if (errorMessages.length > 0) {
+    let message = "Failed to validate data, please review the following:\n";
+    errorMessages.forEach((item, i, a) => {
+      message += "\u2022 " + item + "\n";
+    });
+    alert(message);
+    return false;
+  }
+
+  return true;
 }
 
 function validateLogin() {

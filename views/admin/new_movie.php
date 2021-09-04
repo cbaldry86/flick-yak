@@ -3,6 +3,7 @@ session_start();
 
 $title = 'New Movie';
 $script = '../../scripts/main.js';
+$css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 
@@ -93,4 +94,4 @@ if (isset($_POST['add_new_movie_submit'])) {
 } else {
     echo 'Please submit the <a href="member_register.php">form</a>.';
 }
-echo '</body></html>';
+echo '</div></body></html>';

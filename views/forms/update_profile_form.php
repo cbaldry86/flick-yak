@@ -1,4 +1,5 @@
-<form name="update" action="update_member_profile_h.php" method="post" onsubmit="return validateMemberProfileUpdate()">
+<?php
+echo '<form name="update" action="update_member_profile_h.php" method="post" onsubmit="return validateMemberProfileUpdate()">
     <p>* indicates required fields</p>
     <fieldset>
         <legend>Member Credentials</legend>
@@ -12,4 +13,4 @@
         <br>
         <input type="submit" name="submit" value="Submit" />
     </fieldset>
-</form>
+</form>';

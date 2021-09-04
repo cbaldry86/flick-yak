@@ -2,6 +2,7 @@
 session_start();
 $title = 'New Movie';
 $script = '../../scripts/main.js';
+$css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 echo '<div>
@@ -9,4 +10,4 @@ echo '<div>
         <p>Access is denied due to invalid credentials.</p>
         <a href="' . $root_dir . '">Return home</a>
     </div>';
-echo '</body></html>';
+echo '</div></body></html>';

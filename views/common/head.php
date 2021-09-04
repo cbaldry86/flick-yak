@@ -9,6 +9,7 @@ echo '<!DOCTYPE html>
     <meta name="author" content="Craig Baldry, 10494962">
     <meta name="description" content="Movie Forum">
     <script src="' . $script . '"></script>
+    <link rel="stylesheet" href="'.$css.'">
     <title>' . $title . '</title>
 </head>
 

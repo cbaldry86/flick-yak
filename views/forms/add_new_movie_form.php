@@ -1,4 +1,5 @@
-<form name="add_new_movie" action="new_movie.php" method="post" onsubmit="return validateNewMovie()">
+<?php
+echo '<form name="add_new_movie" action="new_movie.php" method="post" onsubmit="return validateNewMovie()">
     <p>* indicates required fields</p>
     <fieldset>
         <legend>Movie Details</legend>
@@ -11,4 +12,4 @@
         <br>
         <input type="submit" name="add_new_movie_submit" value="Submit" />
     </fieldset>
-</form>
+</form>';

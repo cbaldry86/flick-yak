@@ -1,7 +1,7 @@
-<form name="discussion" action="" method="post" onsubmit="">
+<?php
+echo '<form name="discussion" action="" method="post" onsubmit="return validateDiscussion()">
     <fieldset>
         <input type="text" name="post_message">
-        <input type="hidden" id="movie_id" name="movie_id" value="<?php $_GET['id'] ?>">
         <input type="submit" name="discussion_submit" value="Submit" />
     </fieldset>
-</form>
+</form>';

@@ -10,13 +10,18 @@ require_once '../common/head.php';
 require_once '../common/nav.php';
 
 echo '<h2>Search Results</h2>';
+if ($results -> rowCount() > 0) {
+
 foreach ($results as $row) {
     echo '<p><a href="../public/movie_details.php?id=' . $row['movie_id'] . '">'
         . $row['movie_name'] . ' (' . $row['release_year'] . ')</a>';
     if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 'admin') {
-        echo ' <a href="../admin/delete_movie.php?id=' . $row['movie_id'] . '">delete</a>';
+        echo ' <a onclick="return confirmDelete();" href="../admin/delete_movie.php?id=' . $row['movie_id'] . '">delete</a>';
     } else {
         echo '</p>';
     }
+}
+}else {
+    echo 'No Movies';
 }
 echo '</div></body></html>';

@@ -59,7 +59,6 @@ if (isset($_POST['submit'])) {
     } else {
         //Process Form
         require '../../src/connect_db.php';
-        //TODO: optimize this
         $stmt = $db->prepare("SELECT username FROM user WHERE username = ?");
         $success = $stmt->execute([$_POST['username']]);
         $results = $stmt->fetch();
@@ -75,6 +74,7 @@ if (isset($_POST['submit'])) {
 
             if ($success) {
                 echo '<h3>Form Submitted successfully!</h3>';
+                echo '<p>Please try Signing in now</p>';
                 echo '<a href="../../index.php">Return home</a>.';
             } else {
                 echo '<h3>Something went wrong</h3>';

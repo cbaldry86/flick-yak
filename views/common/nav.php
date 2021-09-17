@@ -1,4 +1,9 @@
 <?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    header('Location: ../errors/404.php');
+    exit();
+};
+
 $views_dir = '/flick-yak/views/';
 $root_dir = '/flick-yak/';
 

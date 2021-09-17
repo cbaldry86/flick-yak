@@ -22,4 +22,6 @@ if (isset($_POST['login_submit'])) {
         $_SESSION["access_level"] = $user['access_level'];
         header('Location: ../../../index.php');
     }
+} else {
+    header('Location: ../../../index.php');
 }

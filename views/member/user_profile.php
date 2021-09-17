@@ -1,10 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['access_level'])) {
+if (!isset($_SESSION['access_level']) ||
+ !($_SESSION['access_level'] == 'admin' || $_SESSION['access_level'] == 'member')) {
     require '../errors/401.php';
     exit;
 }
+
 require '../../src/connect_db.php';
 
 if (!isset($_GET['id'])) {

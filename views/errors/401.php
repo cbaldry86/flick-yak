@@ -1,5 +1,4 @@
 <?php
-session_start();
 $title = 'New Movie';
 $script = '../../scripts/main.js';
 $css = '../../css/main.css';

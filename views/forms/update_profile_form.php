@@ -1,4 +1,10 @@
 <?php
+
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    require '../errors/404.php';
+    exit();
+};
+
 echo '<form name="update" action="update_member_profile_h.php" method="post" onsubmit="return validateMemberProfileUpdate()">
     <p>* indicates required fields</p>
     <fieldset>

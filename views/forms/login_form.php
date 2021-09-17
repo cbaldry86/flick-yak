@@ -1,4 +1,9 @@
 <?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    require '../errors/404.php';
+    exit();
+};
+
 echo '<form name="login" action="' . $views_dir . 'common/login.php' . '" method="post" onsubmit="return validateLogin()">
         <div class="close-overlay-button"onclick="off()">X</div>
         <label>Username:<input type="text" name="username_login" value="testuser"></label>
@@ -7,6 +12,5 @@ echo '<form name="login" action="' . $views_dir . 'common/login.php' . '" method
         <br>
         <input type="submit" name="login_submit" value="Login" />
         <br>
-        <span>Click here to <a href="views/public/member_register.php">Sign Up</a></span>
+        <span>Click here to <a href="' . $views_dir . 'public/member_register.php">Sign Up</a></span>
 </form>';
-

@@ -1,4 +1,9 @@
 <?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    require '../errors/404.php';
+    exit();
+};
+
 echo '<form name="add_new_movie" action="new_movie.php" method="post" onsubmit="return validateNewMovie()">
     <p>* indicates required fields</p>
     <fieldset>

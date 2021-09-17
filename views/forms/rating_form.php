@@ -1,4 +1,9 @@
 <?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    require '../errors/404.php';
+    exit();
+};
+
 echo '<form name="rating" action="" method="post">
 <fieldset>
     <legend>Rate Movie</legend>

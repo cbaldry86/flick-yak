@@ -51,9 +51,9 @@ CREATE TABLE `discussion` (
 --
 
 INSERT INTO `discussion` (`discussion_id`, `movie_id`, `username`, `content`, `post_date`) VALUES
-(1, 1, 'asmith', 'This movie…', '2021-07-19 03:27:40'),
-(2, 1, 'jbloggs', 'The shark…', '2021-07-19 03:27:40'),
-(3, 2, 'jbloggs', 'I didn’t get…', '2021-07-19 03:27:40'),
+(1, 1, 'asmith', 'This movie...', '2021-07-19 03:27:40'),
+(2, 1, 'jbloggs', 'The shark...', '2021-07-19 03:27:40'),
+(3, 2, 'jbloggs', 'I didn\'t get...', '2021-07-19 03:27:40'),
 (4, 3, 'jbloggs', 'Giant smurf!', '2021-07-19 03:27:40');
 
 -- --------------------------------------------------------
@@ -82,9 +82,9 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `movie_name`, `release_year`, `director`, `writers`, `duration`, `summary`) VALUES
-(1, 'Jaws 2', 1978, 'Jeannot Szwarc', 'Peter Benchley, Carl Gottlieb', 116, 'Police chief Brody mu…'),
-(2, 'Inception', 2010, 'Christopher Nolan', 'Christopher Nolan', 148, 'In a world where…'),
-(3, 'Avatar', 2009, 'James Cameron', 'James Cameron', 162, 'A paraplegic marine…');
+(1, 'Jaws 2', 1978, 'Jeannot Szwarc', 'Peter Benchley, Carl Gottlieb', 116, 'Police chief Brody...'),
+(2, 'Inception', 2010, 'Christopher Nolan', 'Christopher Nolan', 148, 'In a world where...'),
+(3, 'Avatar', 2009, 'James Cameron', 'James Cameron', 162, 'A paraplegic marine...');
 
 -- --------------------------------------------------------
 
@@ -204,14 +204,14 @@ ALTER TABLE `movie`
 --
 ALTER TABLE `discussion`
   ADD CONSTRAINT `discussion_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`);
+  ADD CONSTRAINT `discussion_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `rating`
 --
 ALTER TABLE `rating`
   ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`);
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

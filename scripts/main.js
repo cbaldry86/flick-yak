@@ -214,3 +214,7 @@ function validateMemberRegistration() {
 
   return true;
 }
+
+function confirmDelete(){
+  return confirm("Are you sure you wish to delete this movie?\nDoing so will delete discussions and ratings associated");
+}

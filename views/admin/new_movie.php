@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['access_level']) || !$_SESSION['access_level'] == 'admin') {
+    require '../errors/401.php';
+    exit;
+}
+
 $title = 'New Movie';
 $script = '../../scripts/main.js';
 $css = '../../css/main.css';
@@ -83,7 +88,7 @@ if (isset($_POST['add_new_movie_submit'])) {
             $success = $stmt->execute([$_POST['movie_name'], $_POST['year'], $_POST['director'], $_POST['writers'], $_POST['duration'],  $_POST['plot_sum']]);
 
             if ($success) {
-                echo '<h3>Form Submitted successfully!</h3>';
+                echo '<h3>New Movie Submitted Successfully!</h3>';
                 echo '<a href="../../index.php">Return home</a>.';
             } else {
                 echo '<h3>Something went wrong</h3>';

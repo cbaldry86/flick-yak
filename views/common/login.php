@@ -20,8 +20,8 @@ if (isset($_POST['login_submit'])) {
         // Set session variables
         $_SESSION["username"] = $user['username'];
         $_SESSION["access_level"] = $user['access_level'];
-        header('Location: ../../../index.php');
+        header('Location: ../../index.php');
     }
 } else {
-    header('Location: ../../../index.php');
+    header('Location: ../../index.php');
 }

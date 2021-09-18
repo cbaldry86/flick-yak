@@ -1,7 +1,7 @@
 <?php
 $title = 'Registration';
-$script = '../../scripts/main.js';
-$css = '../../css/main.css';
+$script = '/flick-yak/scripts/main.js';
+$css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 
@@ -49,10 +49,14 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    if (empty($_POST['profile_image'])){
-        $image = 'profile_placeholder.png';
-    }else{
-        $image = $_POST['profile_image'];
+    if (!empty($_FILES['profile_image'])){
+        $extensions= array("jpeg","jpg","png", "gif");
+        $imageName = $_FILES['profile_image']['name'];
+        $size =$_FILES['profile_image']['size'];
+
+        if($size > 2097152 && $size > 0){
+            $errorMessages[]='File size must be 2 MB or less';
+        }
     }
 
     if ($errorMessages) {
@@ -74,9 +78,15 @@ if (isset($_POST['submit'])) {
             echo '<p>Username already exists please try logging in or go back and try a different username </p>';
             echo '<a href="javascript: window.history.back()">Return to form</a>';
         } else {
-            $stmt = $db->prepare("INSERT INTO user(username, real_name, email, dob, password)" .
-                " VALUES (?, ?, ?, ?, ?)");
-            $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $_POST['pass']]);
+            $stmt = $db->prepare("INSERT INTO user(username, real_name, email, dob, password, profile_image)" .
+                " VALUES (?, ?, ?, ?, ?, ?)");
+                if (isset($imageName)) {
+                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $_POST['pass'], $imageName]);
+                    $image_path = '../images/'.basename($imageName);
+                    move_uploaded_file($_FILES['profile_image']['tmp_name'], $image_path);
+                }else {
+                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $_POST['pass'], 'profile_placeholder.png']);
+                }
 
             if ($success) {
                 echo '<h3>Form Submitted successfully!</h3>';

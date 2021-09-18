@@ -4,7 +4,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     exit();
 };
 
-echo '<form id="form-container" name="register" action="member_register_h.php" method="post" onsubmit="return validateMemberRegistration()">
+echo '<form id="form-container" name="register" action="member_register_h.php" method="post" onsubmit="return validateMemberRegistration()" enctype="multipart/form-data">
     <fieldset>
         <legend>Member Credentials</legend>
         <span><label>*Username:</label><input type="text" name="username" value="testuser"></span>

@@ -15,6 +15,7 @@ $update_member_profile = $views_dir . 'member/update_member_profile.php';
 $logout = $views_dir . 'common/logout.php';
 $add_movie = $views_dir . 'admin/add_movie.php';
 $all_users = $views_dir . 'admin/all_users.php';
+$profile_link = $views_dir . 'member/user_profile.php?id=';
 
 echo '<div class="header-container"><span><a href="' . $home . '">Flick Yak</a></span>';
 echo '</div>';
@@ -27,7 +28,7 @@ if (!isset($_SESSION['username'])) {
     echo '</div></div>';
     echo '<button class="sign-in-button"onclick="on()">Sign In</button>';    
 } else {
-    echo '<div class="welcome-tag">Welcome, ' . $_SESSION['username'] . ' [<a href="' . $logout . '">Log Out</a>]</div>';
+    echo '<div class="welcome-tag">Welcome, <a href="' . $profile_link . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a> [<a href="' . $logout . '">Log Out</a>]</div>';
 }
 require_once __DIR__ . '/../forms/search_form.php';
 echo '<a href="' . $all_movies_link . '">View All Movies</a>';

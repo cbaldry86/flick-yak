@@ -24,12 +24,12 @@ if (!$user) {
 }
 
 $title = 'Profile';
-$script = '../../scripts/main.js';
-$css = '../../css/main.css';
+$script = '/flick-yak/scripts/main.js';
+$css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 echo '<h1>Details of "' . $user['username'] . '"</h1>';
-
+echo '<img src="../images/'.$user['profile_image'].'" width="200" >';
 echo '<table><tbody>';
 echo '<tr><th>Real Name:</th><td>' . $user['real_name'] . '</td></tr>';
 echo '<tr><th>Email Address:</th><td>' . $user['email'] . '</td></tr>';

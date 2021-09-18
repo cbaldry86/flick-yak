@@ -215,6 +215,8 @@ td a:hover {
   padding: 10px;
   margin: 10px;
   width: 50%;
+  border-radius: 16px;
+  border: 10px double black;
 }
 
 .rating-container fieldset {

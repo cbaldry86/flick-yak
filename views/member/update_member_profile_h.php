@@ -8,8 +8,8 @@ if (!isset($_SESSION['access_level']) ||
 }
 
 $title = 'Update Profile';
-$script = '../../scripts/main.js';
-$css = '../../css/main.css';
+$script = '/flick-yak/scripts/main.js';
+$css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 

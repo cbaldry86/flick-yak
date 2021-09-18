@@ -6,8 +6,8 @@ if (!isset($_SESSION['access_level']) || !$_SESSION['access_level'] == 'admin') 
 }
 
 $title = 'All Movies';
-$script = '../../scripts/main.js';
-$css = '../../css/main.css';
+$script = '/flick-yak/scripts/main.js';
+$css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 echo    '<h1>Add New Movie</h1>';

@@ -11,8 +11,8 @@ require '../../src/connect_db.php';
 $result = $db->query("SELECT * FROM user ORDER BY username");
 
 $title = 'New Movie';
-$script = '../../scripts/main.js';
-$css = '../../css/main.css';
+$script = '/flick-yak/scripts/main.js';
+$css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 require_once '../common/nav.php';

@@ -10,7 +10,6 @@ $script = '../../scripts/main.js';
 $css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
-
-echo    '<h2>Add New Movie</h2><a href="../../index.php">Back Home</a>';
+echo    '<h1>Add New Movie</h1>';
 require_once '../forms/add_new_movie_form.php';
 echo '</div></body></html>';

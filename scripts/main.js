@@ -218,3 +218,8 @@ function validateMemberRegistration() {
 function confirmDelete(){
   return confirm("Are you sure you wish to delete this movie?\nDoing so will delete discussions and ratings associated");
 }
+
+function loadImage(event){
+  var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+}

@@ -22,6 +22,7 @@ if (isset($_POST['rate_submit'])) {
         $stmt = $db->prepare("INSERT INTO rating(movie_id, username, rating) VALUES (?,?,?)");
         $stmt->execute([$id, $_SESSION['username'], $_POST['rating']]);
     }
+    header("Location: movie_details.php?id=$id");
 }
 
 if (isset($_POST['discussion_submit'])) {
@@ -30,6 +31,7 @@ if (isset($_POST['discussion_submit'])) {
         //insert into discussion table with user and movie id
         $stmt = $db->prepare("INSERT INTO discussion(movie_id, username, content) VALUES (?,?,?)");
         $stmt->execute([$id, $_SESSION['username'], $_POST['post_message']]);
+        header("Location: movie_details.php?id=$id");
     } else {
         header('Location: movie_details.php?id=' . $id);
         echo "<script type=\"text/javascript\">"
@@ -66,12 +68,12 @@ if ($movie > 0) {
     echo '<tr><th>Writers:</th><td>' . $movie['writers'] . '</td></tr>';
     echo '<tr><th>Duration:</th><td>' . $movie['duration'] . ' minutes</td></tr>';
     echo '<tr><th>Plot Summary:</th><td>' . $movie['summary'] . '</td></tr></tbody></table>';
-    echo '<h2>Member Rating</h2><p>Average Rating: <b>' . number_format($rating['average_rating'], 1, '.', ',') . '</b></p>';
+    echo '<h1>Member Rating</h1><p>Average Rating: <b>' . number_format($rating['average_rating'], 1, '.', ',') . '</b></p>';
 
     if (isset($_SESSION['username'])) {
         require_once '../forms/rating_form.php';
     }
-    echo "<table><tbody>";
+    echo '<table class="chat-table"><tbody>';
     foreach ($discussion as $row) {
         echo '<tr><td><b>' . date("d/m/Y g:ia", strtotime($row['post_date']));
 

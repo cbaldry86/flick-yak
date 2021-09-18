@@ -16,7 +16,7 @@ $css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 require_once '../common/nav.php';
-echo '<h2>User List</h2>';
+echo '<h1>User List</h1>';
 
 // Loop through each forum to generate an option of the drop-down list
 foreach ($result as $row) {

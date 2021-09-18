@@ -13,7 +13,7 @@ if (isset($_GET['search_movies'])) {
         $stmt->execute([$search_value]);
         $results = $stmt->fetchAll();        
     if (count($results) > 0){
-        echo '<h2>Search Results</h2>';
+        echo '<h1>Search Results</h1>';
         foreach ($results as $row) {
             echo '<p><a href="../public/movie_details.php?id=' . $row['movie_id'] . '">'
                 . $row['movie_name'] . ' (' . $row['release_year'] . ')</a>';
@@ -24,7 +24,7 @@ if (isset($_GET['search_movies'])) {
             }
         }
     }else{
-      echo '<h2>Found Nothing</h2>';
+      echo '<h1>Found Nothing</h1>';
       echo '<p>We searched really hard to find what you were looking for and found nothing.';
     }
 }

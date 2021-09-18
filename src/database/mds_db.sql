@@ -130,7 +130,8 @@ CREATE TABLE `user` (
   `email` varchar(40) NOT NULL,
   `dob` date NOT NULL,
   `password` varchar(255) NOT NULL,
-  `access_level` varchar(10) NOT NULL DEFAULT 'member'
+  `access_level` varchar(10) NOT NULL DEFAULT 'member',
+  `profile_image` varchar(100) DEFAULT 'profile_placeholder.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -141,10 +142,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`) VALUES
-('asmith', NULL, 'smith@gmail.com', '1984-04-19', 'Abc123', 'admin'),
-('cbaldry', 'craig', 'cbaldry@our.ecu.edu.au', '1986-06-17', '12345', 'admin'),
-('jbloggs', 'Joe Bloggs', 'jbloggs@gmail.com', '1984-07-02', 'swordfish99', 'member');
+INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`, `profile_image`) VALUES
+('asmith', NULL, 'smith@gmail.com', '1984-04-19', 'Abc123', 'admin', 'profile_placeholder.png'),
+('cbaldry', 'craig', 'cbaldry@our.ecu.edu.au', '1986-06-17', '12345', 'admin', 'profile_placeholder.png'),
+('jbloggs', 'Joe Bloggs', 'jbloggs@gmail.com', '1984-07-02', 'swordfish99', 'member', 'profile_placeholder.png');
 
 --
 -- Indexes for dumped tables

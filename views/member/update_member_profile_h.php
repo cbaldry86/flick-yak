@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     }
 
     if ($errorMessages) {
-        echo '<h2>Failed to validate data</h2><p> Please review the following:</p>';
+        echo '<h1>Failed to validate data</h1><p> Please review the following:</p>';
         foreach ($errorMessages as $item) {
             echo '<p>' . $item . '</p>';
         }

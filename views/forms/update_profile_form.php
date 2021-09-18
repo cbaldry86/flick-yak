@@ -5,18 +5,17 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     exit();
 };
 
-echo '<form name="update" action="update_member_profile_h.php" method="post" onsubmit="return validateMemberProfileUpdate()">
-    <p>* indicates required fields</p>
+echo '<form id="form-container" name="update" action="update_member_profile_h.php" method="post" onsubmit="return validateMemberProfileUpdate()">
     <fieldset>
         <legend>Member Credentials</legend>
-        <label>*Password:</label><input type="password" name="pass">
-        <label>*Confirm Password:<input type="password" name="confirm_pass"/></label>
+         <span><label>*Password:</label><input type="password" name="pass"></span>
+         <span><label>*Confirm Password:</label><input type="password" name="confirm_pass"/></span>
     </fieldset>
     <fieldset>
         <legend>Member Details</legend>
-        <label>Real Name:</label><input type="text" name="real_name">
-        <label>*Email Address:</label><input type="email" name="email">
-        <br>
+        <span><label>Real Name:</label><input type="text" name="real_name"></span>
+        <span><label>*Email Address:</label><input type="email" name="email"></span>
+        <p>* indicates required fields</p>
         <input type="submit" name="submit" value="Submit" />
     </fieldset>
 </form>';

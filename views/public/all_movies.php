@@ -9,7 +9,7 @@ $css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
 
-echo '<h2>Search Results</h2>';
+echo '<h1>Search Results</h1>';
 if ($results -> rowCount() > 0) {
 
 foreach ($results as $row) {

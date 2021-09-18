@@ -14,13 +14,11 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
-// Select details of specified thread
-// Since the user could tamper with the URL data, a prepared statement is used
 $stmt = $db->prepare("SELECT * FROM user WHERE username = ?");
 $stmt->execute([$_GET['id']]);
 $user = $stmt->fetch();
 
-if (!$user) { // If no data (no thread with that ID in the database)
+if (!$user) { 
     echo 'Invalid User ID.';
     exit;
 }
@@ -30,7 +28,7 @@ $script = '../../scripts/main.js';
 $css = '../../css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
-echo '<h2>Details of "' . $user['username'] . '"</h2>';
+echo '<h1>Details of "' . $user['username'] . '"</h1>';
 
 echo '<table><tbody>';
 echo '<tr><th>Real Name:</th><td>' . $user['real_name'] . '</td></tr>';

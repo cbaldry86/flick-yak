@@ -63,7 +63,7 @@ require_once '../common/nav.php';
 if ($movie > 0) {
     echo '<div class="rating-container">';
     echo '<h1>' . $movie['movie_name'] . ' (' . $movie['release_year'] . ')</h1>';
-    echo '<table></tbody>';
+    echo '<table class="about-table"></tbody>';
     echo '<tr><th>Director:</th><td>' . $movie['director'] . '</td></tr>';
     echo '<tr><th>Writers:</th><td>' . $movie['writers'] . '</td></tr>';
     echo '<tr><th>Duration:</th><td>' . $movie['duration'] . ' minutes</td></tr>';

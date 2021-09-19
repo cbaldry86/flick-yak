@@ -67,7 +67,6 @@ if (isset($_POST['submit'])) {
 
         echo '<a href="javascript: window.history.back()">Return to form</a>';
     } else {
-        //Process Form
         require '../../src/connect_db.php';
         $stmt = $db->prepare("SELECT username FROM user WHERE username = ?");
         $success = $stmt->execute([$_POST['username']]);

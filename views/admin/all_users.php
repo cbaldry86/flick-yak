@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['access_level']) || !$_SESSION['access_level'] == 'admin') {
+if (!isset($_SESSION['access_level']) || $_SESSION['access_level'] !== 'admin') {
     require '../errors/401.php';
     exit;
 }

@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['access_level']) ||
- !($_SESSION['access_level'] == 'admin' || $_SESSION['access_level'] == 'member')) {
+if (!isset($_SESSION['access_level'])) {
     require '../errors/401.php';
     exit;
 }
@@ -33,7 +32,8 @@ echo '<img src="../images/'.$user['profile_image'].'" width="200" >';
 echo '<table><tbody>';
 echo '<tr><th>Real Name:</th><td>' . $user['real_name'] . '</td></tr>';
 echo '<tr><th>Email Address:</th><td>' . $user['email'] . '</td></tr>';
-echo '<tr><th>Year of Birth:</th><td>' . $user['dob'] . '</td></tr>'; //TODO: Show Year
+$year = str_split($user['dob'], 4);
+echo '<tr><th>Year of Birth:</th><td>' . $year[0] . '</td></tr>'; 
 echo '<tr><th>Access Level:</th><td>' . $user['access_level'] . '</td></tr>';
 echo '</tbody></table>';
 

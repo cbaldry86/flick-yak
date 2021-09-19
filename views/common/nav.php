@@ -56,7 +56,7 @@ echo '<div class="content">';
 //     echo '<li><a href="' . $update_member_profile . '">Update My Profile</a></li>';
 // }
 
-// if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 'admin') {
+// if (!isset($_SESSION['access_level']) || $_SESSION['access_level'] == 'admin') {
 //     echo '<li><a href="' . $add_movie . '">Add Movie</a></li>
 //             <li><a href="' . $all_users . '">List All Users</a></li>';
 // }

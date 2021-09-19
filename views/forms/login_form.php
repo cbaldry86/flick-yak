@@ -6,9 +6,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
 echo '<form name="login" action="' . $views_dir . 'common/login.php' . '" method="post" onsubmit="return validateLogin()">
         <div class="close-overlay-button"onclick="off()">X</div>
-        <label>Username:<input type="text" name="username_login" value="testuser"></label>
+        <label>Username:<input type="text" name="username_login" ></label>
         <br>
-        <label>Password:<input type="password" name="pass_login" value="12345"></label>
+        <label>Password:<input type="password" name="pass_login" ></label>
         <br>
         <input type="submit" name="login_submit" value="Login" />
         <br>

@@ -1,7 +1,14 @@
 # Flick-Yak
-A site dedicated to flicks and having a yak
+A site dedicated to flicks and having a yak created by:
 
-## Setup Using XAMMP
+- Craig Baldry
+- 10494962
+
+## Reference
+https://www.w3schools.com/css/default.asp
+
+
+## Setup Database with XAMMP 
 
 To setup site:
 1. Copy entire flick-yack folder over to the htc folder
@@ -9,6 +16,20 @@ To setup site:
 3. Open admin page for mysql
 4. Select import tab and under file to import, choose mds_db.sql file
 5. Once file selected press go then navigate to http://localhost:2431/flick-yak/
+
+## Login Details
+
+Users Available:
+---------------------------------
+| Username  | Password | Access |
+---------------------------------
+| cbaldry   | 12345    | admin  |
+| dbaldry   | qwert    | admin  |
+| lbaldry   | asdfg    | member |
+| rbaldry   | Abc123   | member |
+| mbaldry   | 123ab    | member |
+---------------------------------
+
 
 ## Manual Testing
 

@@ -51,10 +51,19 @@ CREATE TABLE `discussion` (
 --
 
 INSERT INTO `discussion` (`discussion_id`, `movie_id`, `username`, `content`, `post_date`) VALUES
-(1, 1, 'asmith', 'This movie...', '2021-07-19 03:27:40'),
-(2, 1, 'jbloggs', 'The shark...', '2021-07-19 03:27:40'),
-(3, 2, 'jbloggs', 'I didn\'t get...', '2021-07-19 03:27:40'),
-(4, 3, 'jbloggs', 'Giant smurf!', '2021-07-19 03:27:40');
+(1, 1, 'lbaldry', 'Cars Cars Cars what is there not to like <3 <3', '2021-07-19 03:27:40'),
+(2, 1, 'cbaldry', 'Gotta love that tow truck', '2021-07-19 03:30:40'),
+(3, 1, 'mbaldry', 'Not A fan. Cars are so lame :P', '2021-07-19 03:31:40'),
+(4, 1, 'rbaldry', 'Same, I will give it a rating of 4', '2021-07-19 03:32:40'),
+(5, 1, 'dbaldry', 'Me Three, I\'m such an old lady this movie is lame -_-', '2021-07-19 03:33:40'),
+(6, 4, 'rbaldry', 'Bunny!', '2021-07-19 03:33:40'),
+(7, 4, 'mbaldry', 'Duck!', '2021-07-19 03:34:40'),
+(8, 4, 'rbaldry', 'Bunny!', '2021-07-19 03:35:40'),
+(9, 4, 'mbaldry', 'Duck!', '2021-07-19 03:36:40'),
+(10, 3, 'cbaldry', 'Good for it\'s time, Im sure the old lady would like :D', '2021-07-19 03:37:40'),
+(11, 2, 'dbaldry', 'I Like this one :)', '2021-07-19 03:38:40'),
+(12, 2, 'lbaldry', 'Me too!', '2021-07-19 03:39:40'),
+(13, 2, 'mbaldry', 'Sea monster nom nom nom!', '2021-07-19 03:40:40');
 
 -- --------------------------------------------------------
 
@@ -82,9 +91,10 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `movie_name`, `release_year`, `director`, `writers`, `duration`, `summary`) VALUES
-(1, 'Jaws 2', 1978, 'Jeannot Szwarc', 'Peter Benchley, Carl Gottlieb', 116, 'Police chief Brody...'),
-(2, 'Inception', 2010, 'Christopher Nolan', 'Christopher Nolan', 148, 'In a world where...'),
-(3, 'Avatar', 2009, 'James Cameron', 'James Cameron', 162, 'A paraplegic marine...');
+(1, 'Cars 2', 2011, 'John Lasseter, Bradford Lewis', 'John Lasseter, Bradford Lewis, Dan Fogelman', 106, 'Star race car Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in an intriguing adventure of his own: international espionage.'),
+(2, 'Luca', 2021, 'Enrico Casarosa', 'Enrico Casarosa, Jesse Andrews, Simon Stephson', 95, 'On the Italian Riviera, an unlikely but strong friendship grows between a human being and a sea monster disguised as a human.'),
+(3, 'The Lion king', 1994, 'Roger Allers, Rob Minkoff', 'Irene Mecchi, Jonathan Roberts, Linda Woolverton', 88, 'Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.'),
+(4, 'Toy Story 4', 2019, 'Josh Cooley', 'John Lasseter, Andrew Stanton, Josh Cooley', 100, 'When a new toy called "Forky" joins Woody and the gang, a road trip alongside old and new friends reveals how big the world can be for a toy.');
 
 -- --------------------------------------------------------
 
@@ -112,10 +122,26 @@ CREATE TABLE `rating` (
 --
 
 INSERT INTO `rating` (`movie_id`, `username`, `rating`) VALUES
-(1, 'asmith', 6),
-(1, 'jbloggs', 8),
-(2, 'jbloggs', 4),
-(3, 'jbloggs', 7);
+(1, 'lbaldry', 9),
+(2, 'lbaldry', 9),
+(3, 'lbaldry', 6),
+(4, 'lbaldry', 6),
+(1, 'rbaldry', 4),
+(2, 'rbaldry', 7),
+(3, 'rbaldry', 5),
+(4, 'rbaldry', 8),
+(1, 'mbaldry', 4),
+(2, 'mbaldry', 8),
+(3, 'mbaldry', 7),
+(4, 'mbaldry', 9),
+(1, 'dbaldry', 4),
+(2, 'dbaldry', 9),
+(3, 'dbaldry', 6),
+(4, 'dbaldry', 8),
+(1, 'cbaldry', 6),
+(2, 'cbaldry', 8),
+(3, 'cbaldry', 8),
+(4, 'cbaldry', 6);
 
 -- --------------------------------------------------------
 
@@ -143,9 +169,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`, `profile_image`) VALUES
-('asmith', NULL, 'smith@gmail.com', '1984-04-19', 'Abc123', 'admin', 'profile_placeholder.png'),
-('cbaldry', 'craig', 'cbaldry@our.ecu.edu.au', '1986-06-17', '12345', 'admin', 'profile_placeholder.png'),
-('jbloggs', 'Joe Bloggs', 'jbloggs@gmail.com', '1984-07-02', 'swordfish99', 'member', 'profile_placeholder.png');
+('cbaldry', 'Craig Baldry', 'old.man@our.ecu.edu.au', '1986-06-17', '12345', 'admin', 'avatar_1.PNG'),
+('dbaldry', 'Daiane Baldry', 'old.lady@gmail.com', '1987-02-18', 'qwert', 'admin', 'profile_placeholder.png'),
+('lbaldry', 'Leonardo Baldry', 'leo.b@gmail.com', '2003-06-17', 'asdfg', 'member', 'profile_placeholder.png'),
+('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', 'Abc123', 'member', 'profile_placeholder.png'),
+('mbaldry', 'Matilda Baldry', 'tilda.b@gmail.com', '2005-06-14', '123ab', 'member', 'profile_placeholder.png');
 
 --
 -- Indexes for dumped tables

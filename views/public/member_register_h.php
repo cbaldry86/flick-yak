@@ -77,14 +77,15 @@ if (isset($_POST['submit'])) {
             echo '<p>Username already exists please try logging in or go back and try a different username </p>';
             echo '<a href="javascript: window.history.back()">Return to form</a>';
         } else {
+            $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $stmt = $db->prepare("INSERT INTO user(username, real_name, email, dob, password, profile_image)" .
                 " VALUES (?, ?, ?, ?, ?, ?)");
                 if (isset($imageName)) {
-                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $_POST['pass'], $imageName]);
+                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $pass_hash, $imageName]);
                     $image_path = '../images/'.basename($imageName);
                     move_uploaded_file($_FILES['profile_image']['tmp_name'], $image_path);
                 }else {
-                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $_POST['pass'], 'profile_placeholder.png']);
+                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $pass_hash, 'profile_placeholder.png']);
                 }
 
             if ($success) {

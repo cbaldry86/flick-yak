@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2021 at 10:02 PM
+-- Generation Time: Oct 26, 2021 at 02:34 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -39,14 +39,6 @@ CREATE TABLE `discussion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `discussion`:
---   `username`
---       `user` -> `username`
---   `movie_id`
---       `movie` -> `movie_id`
---
-
---
 -- Dumping data for table `discussion`
 --
 
@@ -68,6 +60,21 @@ INSERT INTO `discussion` (`discussion_id`, `movie_id`, `username`, `content`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
+  `log_id` int(11) NOT NULL,
+  `log_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ip_address` varchar(15) NOT NULL,
+  `event_type` varchar(50) NOT NULL,
+  `event_details` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `movie`
 --
 
@@ -83,10 +90,6 @@ CREATE TABLE `movie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `movie`:
---
-
---
 -- Dumping data for table `movie`
 --
 
@@ -94,7 +97,7 @@ INSERT INTO `movie` (`movie_id`, `movie_name`, `release_year`, `director`, `writ
 (1, 'Cars 2', 2011, 'John Lasseter, Bradford Lewis', 'John Lasseter, Bradford Lewis, Dan Fogelman', 106, 'Star race car Lightning McQueen and his pal Mater head overseas to compete in the World Grand Prix race. But the road to the championship becomes rocky as Mater gets caught up in an intriguing adventure of his own: international espionage.'),
 (2, 'Luca', 2021, 'Enrico Casarosa', 'Enrico Casarosa, Jesse Andrews, Simon Stephson', 95, 'On the Italian Riviera, an unlikely but strong friendship grows between a human being and a sea monster disguised as a human.'),
 (3, 'The Lion king', 1994, 'Roger Allers, Rob Minkoff', 'Irene Mecchi, Jonathan Roberts, Linda Woolverton', 88, 'Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.'),
-(4, 'Toy Story 4', 2019, 'Josh Cooley', 'John Lasseter, Andrew Stanton, Josh Cooley', 100, 'When a new toy called "Forky" joins Woody and the gang, a road trip alongside old and new friends reveals how big the world can be for a toy.');
+(4, 'Toy Story 4', 2019, 'Josh Cooley', 'John Lasseter, Andrew Stanton, Josh Cooley', 100, 'When a new toy called \"Forky\" joins Woody and the gang, a road trip alongside old and new friends reveals how big the world can be for a toy.');
 
 -- --------------------------------------------------------
 
@@ -110,38 +113,42 @@ CREATE TABLE `rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `rating`:
---   `username`
---       `user` -> `username`
---   `movie_id`
---       `movie` -> `movie_id`
---
-
---
 -- Dumping data for table `rating`
 --
 
 INSERT INTO `rating` (`movie_id`, `username`, `rating`) VALUES
-(1, 'lbaldry', 9),
-(2, 'lbaldry', 9),
-(3, 'lbaldry', 6),
-(4, 'lbaldry', 6),
-(1, 'rbaldry', 4),
-(2, 'rbaldry', 7),
-(3, 'rbaldry', 5),
-(4, 'rbaldry', 8),
-(1, 'mbaldry', 4),
-(2, 'mbaldry', 8),
-(3, 'mbaldry', 7),
-(4, 'mbaldry', 9),
-(1, 'dbaldry', 4),
-(2, 'dbaldry', 9),
-(3, 'dbaldry', 6),
-(4, 'dbaldry', 8),
 (1, 'cbaldry', 6),
+(1, 'dbaldry', 4),
+(1, 'lbaldry', 9),
+(1, 'mbaldry', 4),
+(1, 'rbaldry', 4),
 (2, 'cbaldry', 8),
+(2, 'dbaldry', 9),
+(2, 'lbaldry', 9),
+(2, 'mbaldry', 8),
+(2, 'rbaldry', 7),
 (3, 'cbaldry', 8),
-(4, 'cbaldry', 6);
+(3, 'dbaldry', 6),
+(3, 'lbaldry', 6),
+(3, 'mbaldry', 7),
+(3, 'rbaldry', 5),
+(4, 'cbaldry', 6),
+(4, 'dbaldry', 8),
+(4, 'lbaldry', 6),
+(4, 'mbaldry', 9),
+(4, 'rbaldry', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `upvotes`
+--
+
+DROP TABLE IF EXISTS `upvotes`;
+CREATE TABLE `upvotes` (
+  `discussion_id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -157,23 +164,21 @@ CREATE TABLE `user` (
   `dob` date NOT NULL,
   `password` varchar(255) NOT NULL,
   `access_level` varchar(10) NOT NULL DEFAULT 'member',
-  `profile_image` varchar(100) DEFAULT 'profile_placeholder.png'
+  `profile_image` varchar(100) DEFAULT 'profile_placeholder.png',
+  `fav_movie_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `user`:
---
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`, `profile_image`) VALUES
-('cbaldry', 'Craig Baldry', 'old.man@our.ecu.edu.au', '1986-06-17', '12345', 'admin', 'avatar_1.PNG'),
-('dbaldry', 'Daiane Baldry', 'old.lady@gmail.com', '1987-02-18', 'qwert', 'admin', 'profile_placeholder.png'),
-('lbaldry', 'Leonardo Baldry', 'leo.b@gmail.com', '2003-06-17', 'asdfg', 'member', 'profile_placeholder.png'),
-('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', 'Abc123', 'member', 'profile_placeholder.png'),
-('mbaldry', 'Matilda Baldry', 'tilda.b@gmail.com', '2005-06-14', '123ab', 'member', 'profile_placeholder.png');
+INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`, `profile_image`, `fav_movie_id`) VALUES
+('cbaldry', '', 'smojoe86@gmail.com', '1986-06-17', '12345', 'admin', 'avatar_1.PNG', NULL),
+('dbaldry', 'Daiane Baldry', 'old.lady@gmail.com', '1987-02-18', 'qwert', 'admin', 'profile_placeholder.png', NULL),
+('lbaldry', 'Leonardo Baldry', 'leo.b@gmail.com', '2003-06-17', 'asdfg', 'member', 'profile_placeholder.png', NULL),
+('mbaldry', 'Matilda Baldry', 'tilda.b@gmail.com', '2005-06-14', '123ab', 'member', 'profile_placeholder.png', NULL),
+('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', 'Abc123', 'member', 'profile_placeholder.png', NULL),
+('testuser', 'test user', 'test.user@nowhere.com', '1987-02-18', '12345', 'member', '', NULL);
 
 --
 -- Indexes for dumped tables
@@ -186,6 +191,12 @@ ALTER TABLE `discussion`
   ADD PRIMARY KEY (`discussion_id`),
   ADD KEY `username` (`username`),
   ADD KEY `movie_id` (`movie_id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`log_id`);
 
 --
 -- Indexes for table `movie`
@@ -202,11 +213,19 @@ ALTER TABLE `rating`
   ADD KEY `movie_id` (`movie_id`);
 
 --
+-- Indexes for table `upvotes`
+--
+ALTER TABLE `upvotes`
+  ADD PRIMARY KEY (`discussion_id`,`username`),
+  ADD KEY `username` (`username`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `fav_movie_id` (`fav_movie_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -216,13 +235,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `discussion`
 --
 ALTER TABLE `discussion`
-  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -241,6 +266,19 @@ ALTER TABLE `discussion`
 ALTER TABLE `rating`
   ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`movie_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `upvotes`
+--
+ALTER TABLE `upvotes`
+  ADD CONSTRAINT `upvotes_ibfk_1` FOREIGN KEY (`discussion_id`) REFERENCES `discussion` (`discussion_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `upvotes_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`fav_movie_id`) REFERENCES `movie` (`movie_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

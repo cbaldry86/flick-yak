@@ -5,7 +5,10 @@ A site dedicated to flicks and having a yak created by:
 - 10494962
 
 ## Reference
-https://www.w3schools.com/css/default.asp
+Used for css, html, javascript:
+https://www.w3schools.com 
+Most of the php from weekly workshops: 
+https://blackboard.ecu.edu.au/webapps/blackboard/content/listContent.jsp?course_id=_662714_1&content_id=_8177452_1&mode=reset 
 
 
 ## Setup Database with XAMMP 
@@ -47,3 +50,10 @@ Users Available:
   - http://localhost:2431/flick-yak/views/forms/login_form.php
   - http://localhost:2431/flick-yak/views/common/nav.php
 
+## Cypress (Work In progress)
+
+TO install:
+npm install cypress --save-dev
+
+To run cypress:
+./node_modules/.bin/cypress open

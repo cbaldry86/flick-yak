@@ -177,7 +177,7 @@ INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access
 ('dbaldry', 'Daiane Baldry', 'old.lady@gmail.com', '1987-02-18', '$2y$10$YhIEKOQmBOuPClNHevI/LeKGPV3DrcK.8.v.iwsnfHnufQs2NHIRu', 'admin', 'profile_placeholder.png', NULL),
 ('lbaldry', 'Leonardo Baldry', 'leo.b@gmail.com', '2003-06-17', '$2y$10$tSX4mAyP3wVIBuLlKN2DBOJgA9Ks9ljBoJrrg9Yf4Q0YdtXbhpORO', 'member', 'profile_placeholder.png', NULL),
 ('mbaldry', 'Matilda Baldry', 'tilda.b@gmail.com', '2005-06-14', '$2y$10$qmvtJ/vNz..E7T4.GBtGGOmBNwK6Ow99LXB8kCrVyABbtadnkZKWm', 'member', 'profile_placeholder.png', NULL),
-('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', '$2y$10$TbuvUBg6HqlSOrnTgDcwOOyau35BidvWOkQbTNOtnNuLmnQCoFBky', 'member', 'profile_placeholder.png', NULL),
+('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', '$2y$10$TbuvUBg6HqlSOrnTgDcwOOyau35BidvWOkQbTNOtnNuLmnQCoFBky', 'member', 'profile_placeholder.png', NULL);
 
 --
 -- Indexes for dumped tables

@@ -46,9 +46,9 @@ if (isset($_POST['submit'])) {
         echo '<a href="javascript: window.history.back()">Return to form</a>';
     } else {
         require '../../src/connect_db.php';
-
+        $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
         $stmt = $db->prepare("UPDATE user SET real_name= ?, email=?, password=? WHERE username =  ?");
-        $success = $stmt->execute([$_POST['real_name'], $_POST['email'], $_POST['pass'], $_SESSION['username']]);
+        $success = $stmt->execute([$_POST['real_name'], $_POST['email'], $pass_hash, $_SESSION['username']]);
         $results = $stmt->fetch();
 
         echo '<h3>Form Submitted successfully!</h3>';

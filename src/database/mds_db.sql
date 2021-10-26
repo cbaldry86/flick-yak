@@ -173,12 +173,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `real_name`, `email`, `dob`, `password`, `access_level`, `profile_image`, `fav_movie_id`) VALUES
-('cbaldry', '', 'smojoe86@gmail.com', '1986-06-17', '12345', 'admin', 'avatar_1.PNG', NULL),
-('dbaldry', 'Daiane Baldry', 'old.lady@gmail.com', '1987-02-18', 'qwert', 'admin', 'profile_placeholder.png', NULL),
-('lbaldry', 'Leonardo Baldry', 'leo.b@gmail.com', '2003-06-17', 'asdfg', 'member', 'profile_placeholder.png', NULL),
-('mbaldry', 'Matilda Baldry', 'tilda.b@gmail.com', '2005-06-14', '123ab', 'member', 'profile_placeholder.png', NULL),
-('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', 'Abc123', 'member', 'profile_placeholder.png', NULL),
-('testuser', 'test user', 'test.user@nowhere.com', '1987-02-18', '12345', 'member', '', NULL);
+('cbaldry', '', 'smojoe86@gmail.com', '1986-06-17', '$2y$10$cg.SM.aB0sv/CVc9/0ttcu34Dr4cSVKray/QVacpiyqBrzFP1GpO.', 'admin', 'avatar_1.PNG', NULL),
+('dbaldry', 'Daiane Baldry', 'old.lady@gmail.com', '1987-02-18', '$2y$10$YhIEKOQmBOuPClNHevI/LeKGPV3DrcK.8.v.iwsnfHnufQs2NHIRu', 'admin', 'profile_placeholder.png', NULL),
+('lbaldry', 'Leonardo Baldry', 'leo.b@gmail.com', '2003-06-17', '$2y$10$tSX4mAyP3wVIBuLlKN2DBOJgA9Ks9ljBoJrrg9Yf4Q0YdtXbhpORO', 'member', 'profile_placeholder.png', NULL),
+('mbaldry', 'Matilda Baldry', 'tilda.b@gmail.com', '2005-06-14', '$2y$10$qmvtJ/vNz..E7T4.GBtGGOmBNwK6Ow99LXB8kCrVyABbtadnkZKWm', 'member', 'profile_placeholder.png', NULL),
+('rbaldry', 'Aurora Baldry', 'rory.b@gmail.com', '2005-06-14', '$2y$10$TbuvUBg6HqlSOrnTgDcwOOyau35BidvWOkQbTNOtnNuLmnQCoFBky', 'member', 'profile_placeholder.png', NULL),
 
 --
 -- Indexes for dumped tables

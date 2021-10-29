@@ -15,6 +15,7 @@ $update_member_profile = $views_dir . 'member/update_member_profile.php';
 $logout = $views_dir . 'common/logout.php';
 $add_movie = $views_dir . 'admin/add_movie.php';
 $all_users = $views_dir . 'admin/all_users.php';
+$view_logs = $views_dir . 'admin/view_logs.php';
 $profile_link = $views_dir . 'member/user_profile.php?id=';
 
 echo '<div class="header-container"><span><a href="' . $home . '">Flick Yak</a></span>';
@@ -38,7 +39,8 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 'admin') {
     echo '<a href="' . $add_movie . '">Add Movie</a>
-    <a href="' . $all_users . '">List All Users</a>';
+    <a href="' . $all_users . '">List All Users</a>
+    <a href="' . $view_logs . '">View Logs</a>';
 }
 echo '</div>';
 if (!isset($_SESSION['username'])) {

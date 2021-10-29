@@ -4,7 +4,7 @@ $script = '/flick-yak/scripts/main.js';
 $css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
-
+require '../common/logs.php';
 if (isset($_POST['submit'])) {
 
     $errorMessages = [];
@@ -49,13 +49,13 @@ if (isset($_POST['submit'])) {
         }
     }
 
-    if (!empty($_FILES['profile_image'])){
-        $extensions= array("jpeg","jpg","png", "gif");
+    if (!empty($_FILES['profile_image'])) {
+        $extensions = array("jpeg", "jpg", "png", "gif");
         $imageName = $_FILES['profile_image']['name'];
-        $size =$_FILES['profile_image']['size'];
+        $size = $_FILES['profile_image']['size'];
 
-        if($size > 2097152 && $size > 0){
-            $errorMessages[]='File size must be 2 MB or less';
+        if ($size > 2097152 && $size > 0) {
+            $errorMessages[] = 'File size must be 2 MB or less';
         }
     }
 
@@ -80,15 +80,21 @@ if (isset($_POST['submit'])) {
             $pass_hash = password_hash($_POST['pass'], PASSWORD_DEFAULT);
             $stmt = $db->prepare("INSERT INTO user(username, real_name, email, dob, password, profile_image)" .
                 " VALUES (?, ?, ?, ?, ?, ?)");
-                if (isset($imageName)) {
-                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $pass_hash, $imageName]);
-                    $image_path = '../images/'.basename($imageName);
-                    move_uploaded_file($_FILES['profile_image']['tmp_name'], $image_path);
-                }else {
-                    $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $pass_hash, 'profile_placeholder.png']);
-                }
+            if (isset($imageName)) {
+                $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $pass_hash, $imageName]);
+                $image_path = '../images/' . basename($imageName);
+                move_uploaded_file($_FILES['profile_image']['tmp_name'], $image_path);
+            } else {
+                $success = $stmt->execute([$_POST['username'], $_POST['real_name'], $_POST['email'], $_POST['dob'],  $pass_hash, 'profile_placeholder.png']);
+            }
 
             if ($success) {
+                update_logs(
+                    $db,
+                    $_SERVER['REMOTE_ADDR'],
+                    "User Registration",
+                    $_POST['username'] . " registered an account"
+                );
                 echo '<h3>Form Submitted successfully!</h3>';
                 echo '<p>Please try Signing in now</p>';
                 echo '<a href="../../index.php">Return home</a>.';

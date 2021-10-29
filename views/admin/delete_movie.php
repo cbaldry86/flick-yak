@@ -19,6 +19,7 @@ $script = '/flick-yak/scripts/main.js';
 $css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
+require '../common/logs.php';
 
 if (isset($id)) {
     $del = $db->prepare("DELETE FROM movie WHERE movie_id = ?");
@@ -27,6 +28,12 @@ if (isset($id)) {
 }
 
 if ($count > 0){
+    update_logs(
+        $db,
+        $_SERVER['REMOTE_ADDR'],
+        "Movie Deleted",
+        $_POST['movie_name']."(".$_POST['year'].") deleted by".$_POST['username']
+    );
     echo '<h3>Movie deleted successfully!</h3>';
 }else{
     echo '<h3>Movie not deleted!</h3>';    

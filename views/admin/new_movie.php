@@ -11,6 +11,7 @@ $script = '/flick-yak/scripts/main.js';
 $css = '/flick-yak/css/main.css';
 require_once '../common/head.php';
 require_once '../common/nav.php';
+require '../common/logs.php';
 
 if (isset($_POST['add_new_movie_submit'])) {
     $errorMessages = [];
@@ -88,6 +89,12 @@ if (isset($_POST['add_new_movie_submit'])) {
             $success = $stmt->execute([$_POST['movie_name'], $_POST['year'], $_POST['director'], $_POST['writers'], $_POST['duration'],  $_POST['plot_sum']]);
 
             if ($success) {
+                update_logs(
+                    $db,
+                    $_SERVER['REMOTE_ADDR'],
+                    "Movie Added",
+                    $_POST['movie_name'] . "(" . $_POST['year'] . ") added by" . $_POST['username']
+                );
                 echo '<h3>New Movie Submitted Successfully!</h3>';
                 echo '<a href="../../index.php">Return home</a>.';
             } else {

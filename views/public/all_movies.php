@@ -1,5 +1,6 @@
 <?php
 session_start();
+print_r($_SERVER);
 require '../../src/connect_db.php';
 $results = $db->query("SELECT * FROM movie ORDER BY movie_name");
 

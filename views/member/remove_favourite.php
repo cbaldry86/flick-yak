@@ -13,7 +13,7 @@ if (!isset($_SESSION['access_level'])) {
         $count = $stmt->rowCount();
 
         if ($count > 0) {
-            http_response_code();
+            echo 'Success';
         } else {
             http_response_code(500);
         }

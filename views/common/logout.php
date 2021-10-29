@@ -6,7 +6,7 @@ update_logs(
     $db,
     $_SERVER['REMOTE_ADDR'],
     "Logout",
-    $_POST['username'] . " logged out"
+    $_SESSION['username'] . " logged out"
 );
 session_unset();
 session_destroy();

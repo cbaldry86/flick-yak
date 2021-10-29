@@ -22,6 +22,11 @@ require_once '../common/nav.php';
 require '../common/logs.php';
 
 if (isset($id)) {
+    $stmt = $db->prepare("SELECT movie_name, release_year FROM movie WHERE movie_id = ?");
+    $stmt->execute([$id]);
+    $movie = $stmt->fetch();
+
+
     $del = $db->prepare("DELETE FROM movie WHERE movie_id = ?");
     $del->execute([$id]);
     $count = $del->rowCount();
@@ -32,7 +37,7 @@ if ($count > 0){
         $db,
         $_SERVER['REMOTE_ADDR'],
         "Movie Deleted",
-        $_POST['movie_name']."(".$_POST['year'].") deleted by".$_POST['username']
+        $movie['movie_name']."(".$movie['release_year'].") deleted by ".$_SESSION['username']
     );
     echo '<h3>Movie deleted successfully!</h3>';
 }else{

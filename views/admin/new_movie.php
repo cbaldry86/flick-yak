@@ -93,7 +93,7 @@ if (isset($_POST['add_new_movie_submit'])) {
                     $db,
                     $_SERVER['REMOTE_ADDR'],
                     "Movie Added",
-                    $_POST['movie_name'] . "(" . $_POST['year'] . ") added by" . $_POST['username']
+                    $_POST['movie_name'] . " (" . $_POST['year'] . ") added by " . $_SESSION['username']
                 );
                 echo '<h3>New Movie Submitted Successfully!</h3>';
                 echo '<a href="../../index.php">Return home</a>.';

@@ -16,7 +16,7 @@ if (isset($_POST['login_submit'])) {
             $db,
             $_SERVER['REMOTE_ADDR'],
             "Login",
-            $_POST['username'] . " logged in"
+            $_POST['username_login'] . " logged in"
         );
         header('Location: ../../index.php');
     } else {
@@ -24,7 +24,7 @@ if (isset($_POST['login_submit'])) {
             $db,
             $_SERVER['REMOTE_ADDR'],
             "Login Attempt",
-            "Failed login attempt with username of " . $_POST['username']
+            "Failed login attempt with username of " . $_POST['username_login']
         );
         $title = 'Login';
         $script = '../../scripts/main.js';

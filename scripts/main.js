@@ -1,7 +1,7 @@
 function failedLoginWarning() {
   loginForm = document.form.login;
   warning = document.createElement("span");
-  warning.textContent="*Username or password was wrong please try again.*"
+  warning.textContent = "*Username or password was wrong please try again.*";
   warning.setAttribute("class", "warningText");
   loginForm.appendChild(warning);
 }
@@ -215,11 +215,95 @@ function validateMemberRegistration() {
   return true;
 }
 
-function confirmDelete(){
-  return confirm("Are you sure you wish to delete this movie?\nDoing so will delete discussions and ratings associated");
+function confirmDelete() {
+  return confirm(
+    "Are you sure you wish to delete this movie?\nDoing so will delete discussions and ratings associated"
+  );
 }
 
-function loadImage(event){
-  var image = document.getElementById('output');
-	image.src = URL.createObjectURL(event.target.files[0]);
+function loadImage(event) {
+  var image = document.getElementById("output");
+  image.src = URL.createObjectURL(event.target.files[0]);
 }
+
+const favouriteApis = {
+  async updateFavourite(movie_id, user_id) {
+    var url = "../member/add_favourite.php";
+    var formData = new FormData();
+    formData.append("u_id", user_id);
+    formData.append("m_id", movie_id);
+
+    let data = await fetch(url, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+
+    console.log(data);
+    window.location.reload();
+  },
+  async removeFavourite(user_id) {
+    var url = "../member/remove_favourite.php";
+    var formData = new FormData();
+    formData.append("u_id", user_id);
+
+    let data = await fetch(url, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+
+    console.log(data);
+    window.location.reload();
+  },
+};
+
+const profileApis = {
+  async promoteToAdmin(user_id) {
+    var url = "../admin/promote_member.php";
+    var formData = new FormData();
+    formData.append("u_id", user_id);
+
+    let data = await fetch(url, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+
+    console.log(data);
+    window.location.reload();
+  },
+  async demoteToMember(user_id, admin_count) {
+    var url = "../admin/demote_admin.php";
+    var formData = new FormData();
+    formData.append("u_id", user_id);
+
+    if (admin_count <= 1) {
+      alert(
+        "Unable to demote this user to member. Need at least a minium of 1 admin at all times."
+      );
+      return false;
+    }
+
+    let data = await fetch(url, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+
+    console.log(data);
+    window.location.reload();
+  },
+};

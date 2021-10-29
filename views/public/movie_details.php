@@ -52,6 +52,13 @@ if (isset($id)) {
     $stmt = $db->prepare("SELECT * FROM discussion WHERE movie_id = ? ORDER BY post_date DESC");
     $stmt->execute([$id]);
     $discussion = $stmt->fetchAll();
+
+    //Let's check if user has this as a favorite movie
+    if (isset($_SESSION['username'])) {
+        $stmt = $db->prepare("SELECT * FROM user WHERE fav_movie_id = ? AND username = ?");
+        $stmt->execute([$id, $_SESSION['username']]);
+        $favorite_movie = $stmt->fetch();
+    }
 }
 
 $title = 'Movie Details';
@@ -63,6 +70,10 @@ require_once '../common/nav.php';
 if ($movie > 0) {
     echo '<div class="rating-container">';
     echo '<h1>' . $movie['movie_name'] . ' (' . $movie['release_year'] . ')</h1>';
+    if (isset($_SESSION['username'])) {
+        echo $favorite_movie ? '<a href="#" id="fav-remove" onclick="favouriteApis.removeFavourite(\''.$_SESSION['username'].'\')">Remove Favourite Movie</a>' 
+        : '<a href="#" id="fav-add" onclick="favouriteApis.updateFavourite('.$movie['movie_id'].',\''.$_SESSION['username'].'\')">Set Favourite Movie</a>';
+    }
     echo '<table class="about-table"></tbody>';
     echo '<tr><th>Director:</th><td>' . $movie['director'] . '</td></tr>';
     echo '<tr><th>Writers:</th><td>' . $movie['writers'] . '</td></tr>';
@@ -95,3 +106,7 @@ if ($movie > 0) {
     echo 'Movie does not exist please try another movie';
 }
 echo '</div></div></body></html>';
+
+?>
+
+<a href="http://" target="_blank" rel="noopener noreferrer"></a>

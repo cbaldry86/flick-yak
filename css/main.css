@@ -291,3 +291,17 @@ td a:hover {
 .chat-table td {
   max-width: 100px;
 }
+
+#fav-remove, #fav-add{
+  float: none;
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#fav-remove:hover, #fav-add:hover {
+  background-color: #ddd;
+  color: black;
+}

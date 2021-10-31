@@ -307,3 +307,42 @@ const profileApis = {
     window.location.reload();
   },
 };
+
+const votingApis = {
+  async upvote(discussion_id, user_id) {
+    var url = "../member/up_vote.php";
+    var formData = new FormData();
+    formData.append("d_id", discussion_id);
+    formData.append("u_id", user_id);
+
+    let data = await fetch(url, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+
+    console.log(data);
+    window.location.reload();
+  },
+  async withdrawVote(discussion_id, user_id) {
+    var url = "../member/withdraw_vote.php";
+    var formData = new FormData();
+    formData.append("d_id", discussion_id);
+    formData.append("u_id", user_id);
+
+    let data = await fetch(url, { method: "POST", body: formData })
+      .then((res) => res.text())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.error("Error: ", err);
+      });
+
+    console.log(data);
+    window.location.reload();
+  },
+};

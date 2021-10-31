@@ -47,17 +47,52 @@ if (isset($id)) {
 
     $stmt = $db->prepare("SELECT AVG(rating) AS 'average_rating' FROM rating WHERE movie_id = ?");
     $stmt->execute([$id]);
-    $rating = $stmt->fetch();
+    $rating = $stmt->fetch();    
 
-    $stmt = $db->prepare("SELECT * FROM discussion WHERE movie_id = ? ORDER BY post_date DESC");
-    $stmt->execute([$id]);
-    $discussion = $stmt->fetchAll();
-
-    //Let's check if user has this as a favorite movie
     if (isset($_SESSION['username'])) {
+        $discussion_sql = "SELECT
+            d.*,
+            COUNT(u.discussion_id) AS 'upvotes',
+            IF(d.username = ?, 1, 0) AS has_user, 
+            IF(u.username = ?, 1, 0) AS has_voted 
+        FROM
+            discussion d
+        LEFT OUTER JOIN upvotes u ON
+            d.discussion_id = u.discussion_id
+        WHERE
+            d.movie_id = ?
+        GROUP BY
+            d.discussion_id
+        ORDER BY
+            post_date";
+
+        $stmt = $db->prepare($discussion_sql);
+        $stmt->execute([$_SESSION['username'], $_SESSION['username'], $id]);
+        $discussion = $stmt->fetchAll();
+
+        //Let's check if user has this as a favorite movie
         $stmt = $db->prepare("SELECT * FROM user WHERE fav_movie_id = ? AND username = ?");
         $stmt->execute([$id, $_SESSION['username']]);
         $favorite_movie = $stmt->fetch();
+    }else{
+        $discussion_sql = "SELECT
+            d.*,
+            COUNT(u.discussion_id) AS 'upvotes'
+        FROM
+            discussion d
+        LEFT OUTER JOIN upvotes u ON
+            d.discussion_id = u.discussion_id
+        WHERE
+            d.movie_id = ?
+        GROUP BY
+            d.discussion_id
+        ORDER BY
+            post_date";
+
+        $stmt = $db->prepare($discussion_sql);
+        $stmt->execute([$id]);
+        $discussion = $stmt->fetchAll();
+        print_r($id);
     }
 }
 
@@ -71,8 +106,8 @@ if ($movie > 0) {
     echo '<div class="rating-container">';
     echo '<h1>' . $movie['movie_name'] . ' (' . $movie['release_year'] . ')</h1>';
     if (isset($_SESSION['username'])) {
-        echo $favorite_movie ? '<a href="#" id="fav-remove" onclick="favouriteApis.removeFavourite(\''.$_SESSION['username'].'\')">Remove Favourite Movie</a>' 
-        : '<a href="#" id="fav-add" onclick="favouriteApis.updateFavourite('.$movie['movie_id'].',\''.$_SESSION['username'].'\')">Set Favourite Movie</a>';
+        echo $favorite_movie ? '<a href="#" id="fav-remove" onclick="favouriteApis.removeFavourite(\'' . $_SESSION['username'] . '\')">Remove Favourite Movie</a>'
+            : '<a href="#" id="fav-add" onclick="favouriteApis.updateFavourite(' . $movie['movie_id'] . ',\'' . $_SESSION['username'] . '\')">Set Favourite Movie</a>';
     }
     echo '<table class="about-table"></tbody>';
     echo '<tr><th>Director:</th><td>' . $movie['director'] . '</td></tr>';
@@ -91,11 +126,21 @@ if ($movie > 0) {
         if (isset($_SESSION['username'])) {
             echo ' <a href="../member/user_profile.php?id=' . $row['username'] . '">('
                 . $row['username'] . ')</a>';
+            echo $row['upvotes'] .' upvotes ';
+
+            if ($row['has_user'] == 0){
+                echo $row['has_voted'] == 0 ? '<a href="#" id="fav-remove" onclick="return votingApis.upvote(\''
+                . $row['discussion_id'] . '\', \'' . $_SESSION['username'] . '\')">(upvote)</a>':
+                '<a href="#" id="fav-remove" onclick="return votingApis.withdrawVote(\''
+                . $row['discussion_id'] . '\', \'' . $_SESSION['username'] . '\')">(withdraw)</a>';
+            }
         } else {
             echo ' ' . $row['username'] . ' </b>';
+            echo $row['upvotes'].' upvotes ';
         }
 
-        echo '<p>' . $row['content'] . '</p></td></tr>';
+        echo '<p>' . $row['content'] . '</p></td>';
+        echo '</tr>';
     }
     echo "</tbody></table>";
 
@@ -106,7 +151,3 @@ if ($movie > 0) {
     echo 'Movie does not exist please try another movie';
 }
 echo '</div></div></body></html>';
-
-?>
-
-<a href="http://" target="_blank" rel="noopener noreferrer"></a>

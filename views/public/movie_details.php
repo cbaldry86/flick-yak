@@ -52,9 +52,7 @@ if (isset($id)) {
     if (isset($_SESSION['username'])) {
         $discussion_sql = "SELECT
             d.*,
-            COUNT(u.discussion_id) AS 'upvotes',
-            IF(d.username = ?, 1, 0) AS has_user, 
-            IF(u.username = ?, 1, 0) AS has_voted 
+            COUNT(u.discussion_id) AS 'upvotes'
         FROM
             discussion d
         LEFT OUTER JOIN upvotes u ON
@@ -66,9 +64,26 @@ if (isset($id)) {
         ORDER BY
             post_date";
 
+        $voting_sql = "SELECT
+            u.discussion_id
+        FROM
+            upvotes u
+        LEFT OUTER JOIN  discussion d ON
+            u.discussion_id = d.discussion_id
+        WHERE
+            d.movie_id = ? AND u.username = ?
+        GROUP BY
+            u.discussion_id
+        ORDER BY
+            post_date";
+
         $stmt = $db->prepare($discussion_sql);
-        $stmt->execute([$_SESSION['username'], $_SESSION['username'], $id]);
+        $stmt->execute([$id]);
         $discussion = $stmt->fetchAll();
+
+        $stmt = $db->prepare($voting_sql);
+        $stmt->execute([$id, $_SESSION['username']]);
+        $voting = $stmt->fetchAll();
 
         //Let's check if user has this as a favorite movie
         $stmt = $db->prepare("SELECT * FROM user WHERE fav_movie_id = ? AND username = ?");
@@ -92,7 +107,6 @@ if (isset($id)) {
         $stmt = $db->prepare($discussion_sql);
         $stmt->execute([$id]);
         $discussion = $stmt->fetchAll();
-        print_r($id);
     }
 }
 
@@ -127,12 +141,19 @@ if ($movie > 0) {
             echo ' <a href="../member/user_profile.php?id=' . $row['username'] . '">('
                 . $row['username'] . ')</a>';
             echo $row['upvotes'] .' upvotes ';
-
-            if ($row['has_user'] == 0){
-                echo $row['has_voted'] == 0 ? '<a href="#" id="fav-remove" onclick="return votingApis.upvote(\''
-                . $row['discussion_id'] . '\', \'' . $_SESSION['username'] . '\')">(upvote)</a>':
-                '<a href="#" id="fav-remove" onclick="return votingApis.withdrawVote(\''
-                . $row['discussion_id'] . '\', \'' . $_SESSION['username'] . '\')">(withdraw)</a>';
+            
+            if ($row['username'] != $_SESSION['username']){
+                $found = false;
+                foreach($voting as $voted){
+                    if ($voted['discussion_id'] == $row['discussion_id']){
+                      $found = true;
+                      break;
+                    }
+                }
+                echo $found ? '<a href="#" id="fav-remove" onclick="return votingApis.withdrawVote(\''
+                . $row['discussion_id'] . '\', \'' . $_SESSION['username'] . '\')">(withdraw)</a>':
+                '<a href="#" id="fav-remove" onclick="return votingApis.upvote(\''
+                . $row['discussion_id'] . '\', \'' . $_SESSION['username'] . '\')">(upvote)</a>';
             }
         } else {
             echo ' ' . $row['username'] . ' </b>';

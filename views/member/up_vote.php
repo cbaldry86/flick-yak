@@ -9,7 +9,7 @@ if (!isset($_SESSION['access_level'])) {
         require '../../src/connect_db.php';
 
 
-        $stmt = $db->prepare("SELECT * FROM upvotes WHERE discussion_id =  ? ANDusername = ?");
+        $stmt = $db->prepare("SELECT * FROM upvotes WHERE discussion_id =  ? AND username = ?");
         $stmt->execute([$_POST['d_id'], $_POST['u_id']]);
         $exist = $stmt->rowCount();
 

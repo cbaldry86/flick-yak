@@ -77,14 +77,14 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`log_id`, `log_date`, `ip_address`, `event_type`, `event_details`) VALUES
-(1, '2021-10-31 18:53:14', '192.168.56.1', 'User Registration', 'cbaldry registered an account'),
-(2, '2021-10-31 18:53:14', '192.168.56.1', 'Login', 'cbaldry logged in'),
-(3, '2021-10-31 18:53:14', '192.168.56.2', 'Login Attempt', 'Failed login attempt with username of dbaldry'),
-(4, '2021-10-31 18:53:14', '192.168.56.2', 'Login', 'dbaldry logged in'),
-(5, '2021-10-31 18:53:14', '192.168.56.2', 'Access Level', 'Changed dbaldry changed access level of cbaldry to admin'),
-(6, '2021-10-31 18:53:14', '192.168.56.2', 'Logout', 'dbaldry logged out'),
-(7, '2021-10-31 18:53:14', '192.168.56.1', 'Movie Added', 'Jaws (1975) added by cbaldry'),
-(8, '2021-10-31 18:53:14', '192.168.56.1', 'Movie Deleted', 'Jaws (1975) deleted by cbaldry');
+(1, '2021-10-31 08:33:14', '192.168.56.1', 'User Registration', 'cbaldry registered an account'),
+(2, '2021-10-31 08:35:14', '192.168.56.1', 'Login', 'cbaldry logged in'),
+(3, '2021-10-31 08:37:14', '192.168.56.2', 'Login Attempt', 'Failed login attempt with username of dbaldry'),
+(4, '2021-10-31 08:43:14', '192.168.56.2', 'Login', 'dbaldry logged in'),
+(5, '2021-10-31 08:45:14', '192.168.56.2', 'Access Level', 'Changed dbaldry changed access level of cbaldry to admin'),
+(6, '2021-10-31 08:47:14', '192.168.56.2', 'Logout', 'dbaldry logged out'),
+(7, '2021-10-31 08:53:14', '192.168.56.1', 'Movie Added', 'Jaws (1975) added by cbaldry'),
+(8, '2021-10-31 08:55:14', '192.168.56.1', 'Movie Deleted', 'Jaws (1975) deleted by cbaldry');
 
 -- --------------------------------------------------------
 
